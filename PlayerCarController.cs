@@ -17,9 +17,9 @@ public class PlayerCarController : MonoBehaviour
     public Transform BackRightWheelTransform;
 
     public float AccelerationForce = 300f;
-    public float BreakingForce = 3000f;
+    public float BrakingForce = 3000f;
     public float presentAccelerationForce = 0f;
-    public float presentBreakingForce = 0f;
+    public float presentBrakingForce = 0f;
 
     [Header("Car Steering")]
     private float steeringTorque = 35f;
@@ -29,6 +29,7 @@ public class PlayerCarController : MonoBehaviour
     {
         MoveCar();
         CarSteering();
+        ApplyBrakes();
     }
 
     private void MoveCar()
@@ -64,5 +65,19 @@ public class PlayerCarController : MonoBehaviour
 
         WT.position = position;
         WT.rotation = rotation;
+    }
+
+    private void ApplyBrakes()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            presentBrakingForce = BrakingForce;
+        
+        else
+            presentBrakingForce = 0f;
+
+        FrontLeftWheelCollider.brakeTorque = presentBrakingForce;
+        FrontLeftWheelCollider.brakeTorque = presentBrakingForce;
+        BackLeftWheelCollider.brakeTorque = presentBrakingForce;
+        BackRightWheelCollider.brakeTorque = presentBrakingForce;       
     }
 }
