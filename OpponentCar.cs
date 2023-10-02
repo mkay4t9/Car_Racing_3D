@@ -13,6 +13,10 @@ public class OpponentCar : MonoBehaviour
     public Vector3 destination;
     public bool destinationReached;
 
+    private void Update()
+    {
+        Drive();
+    }
     public void Drive()
     {
         if (transform.position != destination)
