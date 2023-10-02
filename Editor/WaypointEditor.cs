@@ -18,8 +18,32 @@ public class WaypointEditor
             Gizmos.color = Color.blue * 0.5f;
         }
 
-        Gizmos.DrawSphere(waypoint.transform.position, -1f);
+        Gizmos.DrawSphere(waypoint.transform.position, 0.2f);
 
         Gizmos.color = Color.white;
+
+        //Draw a Width Line on Waypoint
+        Gizmos.DrawLine(waypoint.transform.position + (waypoint.transform.right * waypoint.waypointWidth / 2f), waypoint.transform.position - (waypoint.transform.right * waypoint.waypointWidth / 2f));
+
+        //Draw a Line from Previous to Next Waypoint
+        if (waypoint.previousWaypoint != null)
+        {
+            Gizmos.color = Color.red;
+
+            Vector3 offset = waypoint.transform.right * waypoint.waypointWidth / 2f;
+            Vector3 offsetTo = waypoint.previousWaypoint.transform.right * waypoint.previousWaypoint.waypointWidth / 2f;
+
+            Gizmos.DrawLine(waypoint.transform.position + offset, waypoint.previousWaypoint.transform.position + offsetTo);
+        }
+
+        if (waypoint.nextWaypoint != null)
+        {
+            Gizmos.color = Color.green;
+
+            Vector3 offset = waypoint.transform.right * -waypoint.waypointWidth / 2f;
+            Vector3 offsetTo = waypoint.previousWaypoint.transform.right * -waypoint.previousWaypoint.waypointWidth / 2f;
+
+            Gizmos.DrawLine(waypoint.transform.position + offset, waypoint.previousWaypoint.transform.position + offsetTo);
+        }
     }
 }
