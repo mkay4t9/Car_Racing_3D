@@ -76,7 +76,7 @@ public class PlayerCarController : MonoBehaviour
             presentBrakingForce = 0f;
 
         FrontLeftWheelCollider.brakeTorque = presentBrakingForce;
-        FrontLeftWheelCollider.brakeTorque = presentBrakingForce;
+        FrontRightWheelCollider.brakeTorque = presentBrakingForce;
         BackLeftWheelCollider.brakeTorque = presentBrakingForce;
         BackRightWheelCollider.brakeTorque = presentBrakingForce;       
     }
