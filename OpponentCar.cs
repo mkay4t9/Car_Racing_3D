@@ -13,9 +13,17 @@ public class OpponentCar : MonoBehaviour
     public Vector3 destination;
     public bool destinationReached;
 
+    public Timer timer;
+
+    private void Awake()
+    {
+        timer = GameObject.Find("EventSystem").GetComponent<Timer>();
+    }
+
     private void Update()
     {
-        Drive();
+        if(timer.isGameStart)
+            Drive();
     }
     public void Drive()
     {

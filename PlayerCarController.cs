@@ -24,12 +24,20 @@ public class PlayerCarController : MonoBehaviour
     [Header("Car Steering")]
     private float steeringTorque = 35f;
     private float presentSteeringTorque = 0f;
+    private Timer timer;
 
+    private void Awake()
+    {
+        timer = GameObject.Find("EventSystem").GetComponent<Timer>();
+    }
     private void Update()
     {
-        MoveCar();
-        CarSteering();
-        ApplyBrakes();
+        if (timer.isGameStart)
+        {
+            MoveCar();
+            CarSteering();
+            ApplyBrakes();
+        }
     }
 
     private void MoveCar()
